@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-// Function for exercise 1
+// Functions for exercise 1
 void ex1Task1()
 {
     int n;
@@ -63,7 +63,29 @@ void ex1Task2()
 }
 
 // Function for exercise 2
+void ex2()
+{
+    int n;
+    std::cout << "Input n: " << std::endl;
+    std::cin >> n;
 
+    int array[100];
+    std::cout << "Input array elements: " << std::endl;
+    for (int i = 0; i < n; ++i)
+    {
+        std::cin >> array[i];
+    }
+    
+    int index = 0;
+    for (int i = 1; i < n; ++i)
+    {
+        if (array[i] >= array[index])
+        {
+            index = i;
+        }
+    }
+    std::cout << "Index: " << index <<std::endl;
+}
 
 // Function for exercise 3
 
@@ -80,11 +102,11 @@ void ex1Task2()
 int main()
 {
     // Exercise 1.
-    ex1Task1();
-    ex1Task2();
+    // ex1Task1();
+    // ex1Task2();
 
     // Exercise 2.
-    // ex2();
+    ex2();
 
     // Exercise 3.
     // ex3();

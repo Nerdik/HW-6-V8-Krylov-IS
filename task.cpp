@@ -88,7 +88,51 @@ void ex2()
 }
 
 // Function for exercise 3
+void ex3()
+{
+    int n;
+    std::cout << "Input n : " << std::endl;
+    std::cin >> n;
 
+
+    int array[100][100];
+    for (int i = 0; i < n; ++i)
+    {
+        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
+        for (int j = 0; j < n; ++j)
+        {
+            std::cin >> array[i][j];
+        }
+    }
+
+    if (n % 2 == 0)
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            int temp = array[i][n/2 - 1];
+            array[i][n/2 - 1] = array[i][n/2];
+            array[i][n/2] = temp;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            int temp = array[i][0];
+            array[i][0] = array[i][n/2];
+            array[i][n/2] = temp;
+        }
+    }
+    
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            std::cout << array[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
+}
 
 // Function for exercise 4
 
@@ -106,10 +150,10 @@ int main()
     // ex1Task2();
 
     // Exercise 2.
-    ex2();
+    // ex2();
 
     // Exercise 3.
-    // ex3();
+    ex3();
 
     // Exercise 4.
     // ex4();

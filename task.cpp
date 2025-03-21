@@ -135,7 +135,40 @@ void ex3()
 }
 
 // Function for exercise 4
+void ex4()
+{
+    int n;
+    std::cout << "Input n : " << std::endl;
+    std::cin >> n;
 
+
+    int array[100][100];
+    for (int i = 0; i < n; ++i)
+    {
+        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
+        for (int j = 0; j < n; ++j)
+        {
+            std::cin >> array[i][j];
+        }
+    }
+
+    int sumArray[100];
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            if (array[i][j] % 2 == 0 && array[i][j] > 0)
+            {
+                sumArray[j] += array[i][j];
+            }
+        }
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        std::cout << sumArray[i] << "\t";
+    }
+}
 
 // Function for exercise 5
 
@@ -153,10 +186,10 @@ int main()
     // ex2();
 
     // Exercise 3.
-    ex3();
+    // ex3();
 
     // Exercise 4.
-    // ex4();
+    ex4();
 
     // Exercise 5.
     // ex5();

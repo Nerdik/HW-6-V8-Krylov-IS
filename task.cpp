@@ -91,7 +91,7 @@ void ex2()
 void ex3()
 {
     int n;
-    std::cout << "Input n : " << std::endl;
+    std::cout << "Input n: " << std::endl;
     std::cin >> n;
 
 
@@ -138,9 +138,8 @@ void ex3()
 void ex4()
 {
     int n;
-    std::cout << "Input n : " << std::endl;
+    std::cout << "Input n: " << std::endl;
     std::cin >> n;
-
 
     int array[10][10];
     for (int i = 0; i < n; ++i)
@@ -213,29 +212,87 @@ void ex5()
     }
 }
 
-// Function for exercise 6
+// Functions for exercise 6
+void ex6ReduceMatrix(int array[10][10], int i, int n, int m)
+{
+    for (int k = i; k < n - 1; ++k)
+    {
+        for (int l = 0; l < m; ++l)
+        {
+            array[k][l] = array[k + 1][l];
+        }
+    }
+}
 
+void ex6()
+{
+    int n;
+    std::cout << "Input n (raws): " << std::endl;
+    std::cin >> n;
+
+    int m;
+    std::cout << "Input m (columns): " << std::endl;
+    std::cin >> m;
+
+    int array[10][10];
+    for (int i = 0; i < n; ++i)
+    {
+        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
+        for (int j = 0; j < m; ++j)
+        {
+            std::cin >> array[i][j];
+        }
+    }
+
+    int num;
+    std::cout << "Input target num: " << std::endl;
+    std::cin >> num;
+    
+
+    for (int i = n - 1; i >= 0; --i)
+    {
+        int sum = 0;
+        for (int j = 0; j < m; ++j)
+        {
+            sum += array[i][j];
+        }
+        if(sum <= num)
+        {
+            ex6ReduceMatrix(array, i, n, m);
+            --n;
+        }
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < m; ++j)
+        {
+            std::cout << array[i][j] << "\t";
+        }
+        std::cout << std::endl;
+    }
+}
 
 int main()
 {
     // Exercise 1.
-    // ex1Task1();
-    // ex1Task2();
+    ex1Task1();
+    ex1Task2();
 
     // Exercise 2.
-    // ex2();
+    ex2();
 
     // Exercise 3.
-    // ex3();
+    ex3();
 
     // Exercise 4.
-    // ex4();
+    ex4();
 
     // Exercise 5.
     ex5();
 
     // Exercise 6.
-    // ex6();
+    ex6();
 
     return 0;
 }

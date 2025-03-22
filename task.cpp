@@ -10,7 +10,7 @@ void ex1Task1()
     std::cout << "Input n: " << std::endl;
     std::cin >> n;
 
-    int array[100];
+    int array[10];
     std::cout << "Input array elements: " << std::endl;
     for (int i = 0; i < n; ++i)
     {
@@ -38,7 +38,7 @@ void ex1Task2()
     std::cout << "Input m (columns): " << std::endl;
     std::cin >> m;
 
-    int array[100][100];
+    int array[10][10];
     for (int i = 0; i < n; ++i)
     {
         std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
@@ -69,7 +69,7 @@ void ex2()
     std::cout << "Input n: " << std::endl;
     std::cin >> n;
 
-    int array[100];
+    int array[10];
     std::cout << "Input array elements: " << std::endl;
     for (int i = 0; i < n; ++i)
     {
@@ -95,7 +95,7 @@ void ex3()
     std::cin >> n;
 
 
-    int array[100][100];
+    int array[10][10];
     for (int i = 0; i < n; ++i)
     {
         std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
@@ -142,7 +142,7 @@ void ex4()
     std::cin >> n;
 
 
-    int array[100][100];
+    int array[10][10];
     for (int i = 0; i < n; ++i)
     {
         std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
@@ -152,7 +152,7 @@ void ex4()
         }
     }
 
-    int sumArray[100];
+    int sumArray[10];
     for (int i = 0; i < n; ++i)
     {
         for (int j = 0; j < n; ++j)
@@ -163,15 +163,55 @@ void ex4()
             }
         }
     }
-
+ 
     for (int i = 0; i < n; ++i)
     {
         std::cout << sumArray[i] << "\t";
     }
 }
 
-// Function for exercise 5
+// Functions for exercise 5
+void ex5NewElementSpace(int array[100], int i, int n)
+{
+    for (int k = n; k > i; --k)
+    {
+        array[k] = array[k - 1];
+    }
+}
 
+void ex5()
+{
+    int n;
+    std::cout << "Input n: " << std::endl;
+    std::cin >> n;
+
+    int array[100];
+    std::cout << "Input array elements: " << std::endl;
+    for (int i = 0; i < n; ++i)
+    {
+        std::cin >> array[i];
+    }
+
+    int newElement;
+    std::cout << "Input new element: " << std::endl;
+    std::cin >> newElement;
+
+    for (int i = 0; i < n; ++i)
+    {
+        if (array[i] % 2 == 0)
+        {
+            ex5NewElementSpace(array, i, n);
+            array[i] = newElement;
+            ++n;
+            ++i;
+        }
+    }
+
+    for (int i = 0; i < n; ++i)
+    {
+        std::cout << array[i] << "\t";
+    }
+}
 
 // Function for exercise 6
 
@@ -189,10 +229,10 @@ int main()
     // ex3();
 
     // Exercise 4.
-    ex4();
+    // ex4();
 
     // Exercise 5.
-    // ex5();
+    ex5();
 
     // Exercise 6.
     // ex6();

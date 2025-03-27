@@ -1,214 +1,288 @@
 // Variant 8
 
 #include <iostream>
+#include <fstream>
 
 
 // Functions for exercise 1
 void ex1Task1()
 {
-    int n;
-    std::cout << "Input n: " << std::endl;
-    std::cin >> n;
+    std::ifstream input("exercise1Task1.txt");
+    std::ofstream output("result1Task1.txt");
 
-    int array[10];
-    std::cout << "Input array elements: " << std::endl;
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cin >> array[i];
+        std::cerr << "Input file is not found!" << std::endl;
     }
-
-    int oddCount;
-    for (int i = 0; i < n; ++i)
+    else if (!output.is_open())
     {
-        if (array[i] % 2 != 0)
+        std::cerr << "Output file is not opened!" << std::endl;
+    }
+    else
+    {   
+        int n = 0;
+        int array[10];
+        while(!input.eof())
         {
-            oddCount++;
+            input >> array[n];
+            ++n;
         }
-    }
-    std::cout << "Odd elements: " << oddCount << std::endl;
-}
 
-void ex1Task2()
-{
-    int n;
-    std::cout << "Input n (raws): " << std::endl;
-    std::cin >> n;
-
-    int m;
-    std::cout << "Input m (columns): " << std::endl;
-    std::cin >> m;
-
-    int array[10][10];
-    for (int i = 0; i < n; ++i)
-    {
-        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
-        for (int j = 0; j < m; ++j)
+        int oddCount;
+        for (int i = 0; i < n; ++i)
         {
-            std::cin >> array[i][j];
-        }
-    }
-
-    int oddCount;
-    for (int i = 0; i < n; ++i)
-    {
-        for (int j = 0; j < m; ++j)
-        {
-            if (array[i][j] % 2 != 0)
+            if (array[i] % 2 != 0)
             {
                 oddCount++;
             }
         }
+        output << oddCount << std::endl;
     }
-    std::cout << "Odd elements: " << oddCount << std::endl;
+}
+
+
+void ex1Task2()
+{
+    std::ifstream input("exercise1Task2.txt");
+    std::ofstream output("result1Task2.txt");
+
+    if (!input.is_open())
+    {
+        std::cerr << "Input file is not found!" << std::endl;
+    }
+    else if (!output.is_open())
+    {
+        std::cerr << "Output file is not opened!" << std::endl;
+    }
+    else
+    {
+        int n, m;
+        if (input >> n >> m)
+        {
+            int array[10][10];
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < m; ++j)
+                {
+                    input >> array[i][j];
+                }
+            }
+
+            int oddCount;
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < m; ++j)
+                {
+                    if (array[i][j] % 2 != 0)
+                    {
+                        oddCount++;
+                    }
+                }
+            }
+            output << oddCount << std::endl;
+        }
+    }
 }
 
 // Function for exercise 2
 void ex2()
 {
-    int n;
-    std::cout << "Input n: " << std::endl;
-    std::cin >> n;
+    std::ifstream input("exercise2.txt");
+    std::ofstream output("result2.txt");
 
-    int array[10];
-    std::cout << "Input array elements: " << std::endl;
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cin >> array[i];
+        std::cerr << "Input file is not found!" << std::endl;
     }
-    
-    int index = 0;
-    for (int i = 1; i < n; ++i)
+    else if (!output.is_open())
     {
-        if (array[i] >= array[index])
+        std::cerr << "Output file is not opened!" << std::endl;
+    }
+    else
+    {
+        int n = 0;
+        int array[10];
+        while(!input.eof())
         {
-            index = i;
+            input >> array[n];
+            ++n;
         }
+
+        int index = 0;
+        for (int i = 1; i < n; ++i)
+        {
+            if (array[i] >= array[index])
+            {
+                index = i;
+            }
+        }
+
+        output << index << std::endl;
     }
-    std::cout << "Index: " << index <<std::endl;
 }
 
 // Function for exercise 3
 void ex3()
 {
-    int n;
-    std::cout << "Input n: " << std::endl;
-    std::cin >> n;
+    std::ifstream input("exercise3.txt");
+    std::ofstream output("result3.txt");
 
-
-    int array[10][10];
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
-        for (int j = 0; j < n; ++j)
-        {
-            std::cin >> array[i][j];
-        }
+        std::cerr << "Input file is not found!" << std::endl;
     }
-
-    if (n % 2 == 0)
+    else if (!output.is_open())
     {
-        for (int i = 0; i < n; ++i)
-        {
-            int temp = array[i][n/2 - 1];
-            array[i][n/2 - 1] = array[i][n/2];
-            array[i][n/2] = temp;
-        }
+        std::cerr << "Output file is not opened!" << std::endl;
     }
     else
     {
-        for (int i = 0; i < n; ++i)
+
+        int n;
+        if (input >> n)
         {
-            int temp = array[i][0];
-            array[i][0] = array[i][n/2];
-            array[i][n/2] = temp;
+            int array[10][10];
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < n; ++j)
+                {
+                    input >> array[i][j];
+                }
+            }
+        
+            if (n % 2 == 0)
+            {
+                for (int i = 0; i < n; ++i)
+                {
+                    int temp = array[i][n/2 - 1];
+                    array[i][n/2 - 1] = array[i][n/2];
+                    array[i][n/2] = temp;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < n; ++i)
+                {
+                    int temp = array[i][0];
+                    array[i][0] = array[i][n/2];
+                    array[i][n/2] = temp;
+                }
+            }
+            
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < n; ++j)
+                {
+                    output << array[i][j] << "\t";
+                }
+                output << std::endl;
+            }
         }
-    }
-    
-    for (int i = 0; i < n; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            std::cout << array[i][j] << "\t";
-        }
-        std::cout << std::endl;
     }
 }
 
 // Function for exercise 4
 void ex4()
 {
-    int n;
-    std::cout << "Input n: " << std::endl;
-    std::cin >> n;
+    std::ifstream input("exercise4.txt");
+    std::ofstream output("result4.txt");
 
-    int array[10][10];
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
-        for (int j = 0; j < n; ++j)
-        {
-            std::cin >> array[i][j];
-        }
+        std::cerr << "Input file is not found!" << std::endl;
     }
-
-    int sumArray[10];
-    for (int i = 0; i < n; ++i)
+    else if (!output.is_open())
     {
-        for (int j = 0; j < n; ++j)
+        std::cerr << "Output file is not opened!" << std::endl;
+    }
+    else
+    {
+
+        int n;
+        if (input >> n)
         {
-            if (array[i][j] % 2 == 0 && array[i][j] > 0)
+            int array[10][10];
+            for (int i = 0; i < n; ++i)
             {
-                sumArray[j] += array[i][j];
+                for (int j = 0; j < n; ++j)
+                {
+                    input >> array[i][j];
+                }
+            }
+
+
+            int sumArray[10] = {0};
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < n; ++j)
+                {
+                    if (array[i][j] % 2 == 0 && array[i][j] > 0)
+                    {
+                        sumArray[j] += array[i][j];
+                    }
+                }
+            }
+        
+            for (int i = 0; i < n; ++i)
+            {
+                output << sumArray[i] << "\t";
             }
         }
-    }
- 
-    for (int i = 0; i < n; ++i)
-    {
-        std::cout << sumArray[i] << "\t";
     }
 }
 
 // Functions for exercise 5
-void ex5NewElementSpace(int array[100], int i, int n)
+void ex5NewElementSpace(int array[100], int k, int n)
 {
-    for (int k = n; k > i; --k)
+    for (int i = n; i > k; --i)
     {
-        array[k] = array[k - 1];
+        array[i] = array[i - 1];
     }
 }
 
 void ex5()
 {
-    int n;
-    std::cout << "Input n: " << std::endl;
-    std::cin >> n;
+    std::ifstream input("exercise5.txt");
+    std::ofstream output("result5.txt");
 
-    int array[100];
-    std::cout << "Input array elements: " << std::endl;
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cin >> array[i];
+        std::cerr << "Input file is not found!" << std::endl;
     }
-
-    int newElement;
-    std::cout << "Input new element: " << std::endl;
-    std::cin >> newElement;
-
-    for (int i = 0; i < n; ++i)
+    else if (!output.is_open())
     {
-        if (array[i] % 2 == 0)
+        std::cerr << "Output file is not opened!" << std::endl;
+    }
+    else
+    {
+        int newElement;
+        if (input >> newElement)
         {
-            ex5NewElementSpace(array, i, n);
-            array[i] = newElement;
-            ++n;
-            ++i;
-        }
-    }
 
-    for (int i = 0; i < n; ++i)
-    {
-        std::cout << array[i] << "\t";
+            int n = 0;
+            int array[10];
+            while(!input.eof())
+            {
+                input >> array[n];
+                ++n;
+            }
+
+            for (int i = 0; i < n; ++i)
+            {
+                if (array[i] % 2 == 0)
+                {
+                    ex5NewElementSpace(array, i, n);
+                    array[i] = newElement;
+                    ++n;
+                    ++i;
+                }
+            }
+
+            for (int i = 0; i < n; ++i)
+            {
+                output << array[i] << "\t";
+            }
+        }
     }
 }
 
@@ -225,51 +299,56 @@ void ex6ReduceMatrix(int array[10][10], int i, int n, int m)
 }
 
 void ex6()
-{
-    int n;
-    std::cout << "Input n (raws): " << std::endl;
-    std::cin >> n;
+{   
+    std::ifstream input("exercise6.txt");
+    std::ofstream output("result6.txt");
 
-    int m;
-    std::cout << "Input m (columns): " << std::endl;
-    std::cin >> m;
-
-    int array[10][10];
-    for (int i = 0; i < n; ++i)
+    if (!input.is_open())
     {
-        std::cout << "Input elements of " << i + 1 << " raw" << std::endl;
-        for (int j = 0; j < m; ++j)
-        {
-            std::cin >> array[i][j];
-        }
+        std::cerr << "Input file is not found!" << std::endl;
     }
-
-    int num;
-    std::cout << "Input target num: " << std::endl;
-    std::cin >> num;
-    
-
-    for (int i = n - 1; i >= 0; --i)
+    else if (!output.is_open())
     {
-        int sum = 0;
-        for (int j = 0; j < m; ++j)
-        {
-            sum += array[i][j];
-        }
-        if(sum <= num)
-        {
-            ex6ReduceMatrix(array, i, n, m);
-            --n;
-        }
+        std::cerr << "Output file is not opened!" << std::endl;
     }
-
-    for (int i = 0; i < n; ++i)
+    else
     {
-        for (int j = 0; j < m; ++j)
+
+        int n, m, target;
+        if (input >> n >> m >> target)
         {
-            std::cout << array[i][j] << "\t";
+            int array[10][10];
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < m; ++j)
+                {
+                    input >> array[i][j];
+                }
+            }
+
+            for (int i = n - 1; i >= 0; --i)
+            {
+                int sum = 0;
+                for (int j = 0; j < m; ++j)
+                {
+                    sum += array[i][j];
+                }
+                if (sum <= target)
+                {
+                    ex6ReduceMatrix(array, i, n, m);
+                    --n;
+                }
+            }
+
+            for (int i = 0; i < n; ++i)
+            {
+                for (int j = 0; j < m; ++j)
+                {
+                    output << array[i][j] << "\t";
+                }
+                output << std::endl;
+            }
         }
-        std::cout << std::endl;
     }
 }
 

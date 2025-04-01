@@ -28,7 +28,7 @@ void ex1Task1()
             ++n;
         }
 
-        int oddCount;
+        int oddCount = 0;
         for (int i = 0; i < n; ++i)
         {
             if (array[i] % 2 != 0)
@@ -68,7 +68,7 @@ void ex1Task2()
                 }
             }
 
-            int oddCount;
+            int oddCount = 0;
             for (int i = 0; i < n; ++i)
             {
                 for (int j = 0; j < m; ++j)
